@@ -29,7 +29,7 @@ async function run() {
       : found_file;
 
     const content = `---
-title: ${issue_title}
+title: "${issue_title}"
 tags: ${JSON.stringify(label_names(issue.labels))}
 ---
 
