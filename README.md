@@ -10,7 +10,7 @@ on:
     types: [opened, edited, labeled, unlabeled]
 
 jobs:
-  two:
+  deploy:
     runs-on: ubuntu-latest
     steps:
       - name: checkout
