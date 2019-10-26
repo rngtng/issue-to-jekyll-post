@@ -1,10 +1,13 @@
-name: 'Your name here'
-description: 'Provide a description here'
-author: 'Your name or organization here'
+name: 'Issue to Jekyll Post'
+description: 'Create a Jekyll post from an issue'
+author: 'Shuhei M Yoshida'
 inputs:
-  myInput:              # change this
-    description: 'input description here'
-    default: 'default value if applicable'
+  post_dir:              # change this
+    description: 'directory to save posts'
+    default: './_posts'
+  update_filename:
+    description: 'update the date in the filename when an issue is updated'
+    default: true
 runs:
   using: 'node12'
   main: 'lib/main.js'
