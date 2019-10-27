@@ -8,6 +8,9 @@ inputs:
   update_filename:
     description: 'update the date in the filename when an issue is updated'
     default: true
+  timezone:
+    description: ''
+    required: false
 runs:
   using: 'node12'
   main: 'lib/main.js'
