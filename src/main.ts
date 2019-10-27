@@ -8,7 +8,7 @@ import glob = require('glob');
 async function run() {
   try {
     const post_dir = core.getInput('post_dir').trim().replace(/\/+$/, "");
-    const update_fn = core.getInput('update_filname')
+    const update_fn = core.getInput('update_filename').trim().toLowerCase()
     set_timezone()
 
     const context = github.context
@@ -23,9 +23,8 @@ async function run() {
     const title_fmt = issue_title.toLowerCase()
       .replace(/\s+/g, '-')
       .replace(/\/|\\|\:|\*|\?|"|<|>|\|/g, "_");
-    const found_file: string | null = find_existing_file(title_fmt, post_dir);
-    if (found_file) core.debug(`found ${found_file}`)
-    const output_fn = (found_file == null || update_fn.toLowerCase() == "true")
+    const found_file: string = find_existing_file(title_fmt, post_dir);
+    const output_fn = (!found_file || update_fn == "true")
       ? get_filename(title_fmt, post_dir)
       : found_file;
 
@@ -72,20 +71,14 @@ function get_filename(title: string, post_dir: string): string {
   return path.join(post_dir, date + "-" + title + ".md");
 }
 
-function find_existing_file(title: string, post_dir: string): string | null {
-  let found: string | null = null;
-  glob(
+function find_existing_file(title: string, post_dir: string): string {
+  const match = glob.sync(
     post_dir + "/[0-9][0-9][0-9][0-9]-[0-9][0-9]-[0-9][0-9]-" + title + ".md",
-    { "nodir": true, "nonull": false, "nosort": false },
-    function (err: Error | null, match: Array<String>) {
-      if (err != null || match.length == 0) {
-        return;
-      }
-      found = match[match.length - 1].toString();
-    }
-  )
-
-  return found;
+    { "nodir": true, "nonull": false, "nosort": false }
+  );
+  if (match.length == 0) return '';
+  core.debug(`glob match = [${match}]`);
+  return match[match.length - 1];
 }
 
 function label_names(labels: Array<{ name: string }>): Array<string> {
