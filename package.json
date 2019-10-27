@@ -1,6 +1,6 @@
 {
   "name": "issue-to-jekyll-post",
-  "version": "0.0.0",
+  "version": "0.1.0",
   "private": true,
   "description": "Create a Jekyll post from an inssue",
   "main": "lib/main.js",
@@ -17,12 +17,12 @@
     "node",
     "setup"
   ],
-  "author": "YourNameOrOrganization",
+  "author": "Shuhei M Yoshida",
   "license": "MIT",
   "dependencies": {
     "@actions/core": "^1.1.0",
     "@actions/github": "^1.1.0",
-    "moment": "^2.24.0",
+    "moment-timezone": "^0.5.27",
     "glob": "^7.1.5"
   },
   "devDependencies": {
