@@ -1,6 +1,8 @@
 ---
+layout: default
 title: "update_filename is not working"
-tags: ["bug","dummy"]
+tags: ["bug"]
+date: 2019-10-28 01:47:12 +0900
 ---
 
 # update_filename is not working
