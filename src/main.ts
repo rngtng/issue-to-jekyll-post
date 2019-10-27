@@ -7,9 +7,9 @@ import glob = require('glob');
 
 async function run() {
   try {
-    set_timezone()
     const post_dir = core.getInput('post_dir').trim().replace(/\/+$/, "");
     const update_fn = core.getInput('update_filname')
+    set_timezone()
 
     const context = github.context
     core.debug(JSON.stringify(context, undefined, 2))
@@ -59,6 +59,11 @@ function set_timezone(): void {
   const timezone = core.getInput('timezone')
   if (timezone) {
     moment.tz.setDefault(timezone)
+    core.debug(`Timezone is set ${timezone}`)
+    core.debug(moment().format())
+  } else {
+    core.debug("Use the default timezone")
+    core.debug(moment().format())
   }
 }
 
