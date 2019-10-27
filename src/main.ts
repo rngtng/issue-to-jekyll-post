@@ -2,11 +2,12 @@ import * as core from '@actions/core';
 import * as github from '@actions/github';
 import * as fs from 'fs'
 import * as path from 'path'
-import moment = require('moment')
+import moment = require('moment-timezone')
 import glob = require('glob');
 
 async function run() {
   try {
+    set_timezone()
     const post_dir = core.getInput('post_dir').trim().replace(/\/+$/, "");
     const update_fn = core.getInput('update_filname')
 
@@ -54,8 +55,14 @@ ${issue.html_url}
   }
 }
 
+function set_timezone(): void {
+  const timezone = core.getInput('timezone')
+  if (timezone) {
+    moment.tz.setDefault(timezone)
+  }
+}
+
 function get_filename(title: string, post_dir: string): string {
-  post_dir = post_dir.trim().replace(/\/+$/, "");
   const date: string = moment().format("YYYY-MM-DD");
   return path.join(post_dir, date + "-" + title + ".md");
 }
