@@ -8,6 +8,9 @@ inputs:
   update_filename:
     description: 'update the date in the filename when an issue is updated'
     default: true
+  layout:
+    description: 'the layout file to be specified in the frontmatter'
+    required: false
   timezone:
     description: ''
     required: false
