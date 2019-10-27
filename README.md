@@ -39,6 +39,8 @@ jobs:
         with:
           post_dir: "_posts"
           update_filename: true
+          layout: post
+          timezone: Asia/Tokyo
       - env:
           ACCESS_TOKEN: ${{ secrets.ACCESS_TOKEN }}
           BRANCH: gh-pages
