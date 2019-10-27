@@ -6,6 +6,7 @@ import * as path from 'path'
 test('test runs', () => {
     process.env['INPUT_POST_DIR'] = './_posts';
     process.env['INPUT_UPDATE_FILENAME'] = 'true'
+    process.env['INPUT_TIMEZONE'] = 'Asia/Tokyo'
     const ip = path.join(__dirname, '..', 'lib', 'main.js');
     const options: cp.ExecSyncOptions = {
         env: process.env
