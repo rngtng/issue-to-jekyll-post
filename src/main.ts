@@ -8,7 +8,7 @@ import glob = require('glob');
 async function run() {
   try {
     const post_dir = core.getInput('post_dir').trim().replace(/\/+$/, "");
-    const update_fn = core.getInput('update_filname')
+    const update_fn = core.getInput('update_filename').trim().toLowerCase()
     set_timezone()
 
     const context = github.context
@@ -24,7 +24,7 @@ async function run() {
       .replace(/\s+/g, '-')
       .replace(/\/|\\|\:|\*|\?|"|<|>|\|/g, "_");
     const found_file: string = find_existing_file(title_fmt, post_dir);
-    const output_fn = (!found_file || update_fn.toLowerCase() == "true")
+    const output_fn = (!found_file || update_fn == "true")
       ? get_filename(title_fmt, post_dir)
       : found_file;
 
@@ -77,7 +77,7 @@ function find_existing_file(title: string, post_dir: string): string {
     { "nodir": true, "nonull": false, "nosort": false }
   );
   if (match.length == 0) return '';
-  core.debug(`glob match = ${match}`);
+  core.debug(`glob match = [${match}]`);
   return match[match.length - 1];
 }
 
