@@ -1,8 +1,8 @@
 ---
 layout: default
 title: "stop adding the \# line"
-tags: []
-date: 2019-10-28 21:27:22 +0900
+tags: ["enhancement"]
+date: 2019-10-28 21:27:37 +0900
 ---
 
 # stop adding the \# line
