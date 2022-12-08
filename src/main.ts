@@ -51,7 +51,8 @@ ${issue.html_url}
       else console.log(`successfully write in ${output_fn}`)
     })
   } catch (error) {
-    core.setFailed(error.message);
+    // error.message
+    core.setFailed("Failure");
   }
 }
 
